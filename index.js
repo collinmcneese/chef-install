@@ -21,8 +21,10 @@ async function main() {
     // await exec.exec(`sudo chmod +x chefDownload.sh`)
     // await exec.exec(`sudo ./chefDownload.sh ${channelParam} ${projectParam} ${versionParam}`)
     // await exec.exec(`rm -f chefDownload.sh`)
-    await exec.exec(`. { invoke-webrequest -outfile chef-install.ps1 -uri https://${omnitruckUrl}/install.ps1 }`)
-    await exec.exec(`. { ls }`)
+    await exec.exec(`get-command Invoke-WebRequest`)
+    await exec.exec(`. { Invoke-WebRequest -outfile chef-install.ps1 -uri https://${omnitruckUrl}/install.ps1 }`)
+    await exec.exec(`get-command Get-ChildItem`)
+    await exec.exec(`. { Get-ChildItem }`)
     await exec.exec(`. { .\\chef-install.ps1 }`)
   } catch (error){
     core.setFailed(error.message);
